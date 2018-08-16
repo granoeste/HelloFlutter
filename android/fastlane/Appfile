@@ -1,0 +1,2 @@
+json_key_file "~/.keystore/play_store_upload_key.json"
+package_name("net.granoeste.example.helloflutter") # e.g. com.krausefx.app
