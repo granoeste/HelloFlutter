@@ -5,11 +5,21 @@ container:
   image: cirrusci/flutter:latest
 
 task:
+  env:
+    GOOGLE_PLAY_UPLOAD_API_KEY: ENCRYPTED[dd9a1d0950bcf311947cd0edff57f833640f42e7aad02440c0555af31d34ad6203e52e32b5543253de67aeaac72961f0]
+    GOOGLE_PLAY_UPLOAD_KEY: ENCRYPTED[9e9265f8710bdf201ca9292d566cc3c487a202cfb5df759e66ed0103c3566743cd5a666786b794ae3344b41a1594d082]
+    GOOGLE_PLAY_UPLOAD_KEY_PROPERTIES: ENCRYPTED[e89f170452569a2c43b05d4279237c070bd0de80fd4341b3782a785f968c147d0875c521a8c1297fc0eb4f884d838950]
   pub_cache:
     folder: ~/.pub-cache
   script: | 
+    echo "$GOOGLE_PLAY_UPLOAD_KEY" | base64 --decode > android/fake_upload.jks
+    echo "$GOOGLE_PLAY_UPLOAD_KEY_PROPERTIES" | base64 --decode > android/key.properies
+    ls -ls android
     flutter build apk --release
-    flutter build ios --release --no-codesign
+    # flutter build ios --release --no-codesign
   # script: |
   #   cd android
   #   fastlane build
+
+
+
