@@ -13,8 +13,7 @@ task:
     folder: ~/.pub-cache
   script: | 
     echo "$GOOGLE_PLAY_UPLOAD_KEY" | base64 --decode > android/fake_upload.jks
-    echo "$GOOGLE_PLAY_UPLOAD_KEY_PROPERTIES" | base64 --decode > android/key.properies
-    pwd
+    echo "$GOOGLE_PLAY_UPLOAD_KEY_PROPERTIES" | base64 --decode > android/key.properties
     ls -ls android
     flutter channel
     flutter doctor
