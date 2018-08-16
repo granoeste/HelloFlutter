@@ -1,0 +1,15 @@
+# osx_instance:
+#   image: high-sierra-xcode-9.4.1
+
+container:
+  image: cirrusci/flutter:latest
+
+task:
+  pub_cache:
+    folder: ~/.pub-cache
+  script: | 
+    flutter build apk --release
+    flutter build ios --release --no-codesign
+  # script: |
+  #   cd android
+  #   fastlane build
