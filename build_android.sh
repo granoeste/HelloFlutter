@@ -3,14 +3,19 @@ set -e
 
 flutter doctor -v
 
-# echo "$GOOGLE_PLAY_UPLOAD_KEY" | base64 --decode > android/fake_upload.jks
-# echo "$GOOGLE_PLAY_UPLOAD_KEY_PROPERTIES" | base64 --decode > android/key.properties
-# ls -ls android
+# Build preconfig
+echo "$GOOGLE_PLAY_UPLOAD_KEY" | base64 --decode > android/fake_upload.jks
+echo "$GOOGLE_PLAY_UPLOAD_KEY_PROPERTIES" | base64 --decode > android/key.properties
+ls -ls android
 
-# flutter build apk --release
+# Build run
+flutter build apk --release
 
 cd android
+
+# Update fastlane
 fastlane -v
 sudo fastlane update_fastlane
 
-# fastlane deploy_play_store
+# Deploy Play Store
+fastlane deploy_play_store
