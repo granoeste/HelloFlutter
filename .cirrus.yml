@@ -2,7 +2,8 @@
 #   image: high-sierra-xcode-9.4.1
 
 container:
-  image: cirrusci/flutter:latest
+  # image: cirrusci/flutter:latest
+  image: gcr.io/flutter-cirrus/build-flutter-image:latest
 
 task:
   env:
