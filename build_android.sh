@@ -11,6 +11,6 @@ flutter doctor -v
 
 cd android
 fastlane -v
-fastlane update_fastlane
+sudo fastlane update_fastlane
 
 # fastlane deploy_play_store
