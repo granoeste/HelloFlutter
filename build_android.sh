@@ -11,5 +11,7 @@ ls -ls android
 flutter build apk --release
 
 cd android
+fastlane version
+fastlane update_fastlane
 
 fastlane deploy_play_store
