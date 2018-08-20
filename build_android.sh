@@ -10,7 +10,7 @@ flutter doctor -v
 # flutter build apk --release
 
 cd android
-fastlane version
-# fastlane update_fastlane
+fastlane -v
+fastlane update_fastlane
 
 # fastlane deploy_play_store
