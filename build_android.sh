@@ -18,4 +18,4 @@ fastlane -v
 sudo fastlane update_fastlane
 
 # Build and Deploy Play Store
-fastlane deploy_newer_to_deploy_play_store
+fastlane build_newer_and_deploy_play_store

@@ -11,3 +11,4 @@
 GeneratedPluginRegistrant.java
 *.jks
 */report.xml
+*.env*
