@@ -386,8 +386,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.granoeste.example.helloflutter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5aea5df9-b10a-49b1-9c08-2675e08316cc";
-				PROVISIONING_PROFILE_SPECIFIER = "helloflutter-Development";
+				PROVISIONING_PROFILE = "23efb998-feac-4a6a-9c61-f7066f5a4786";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development net.granoeste.example.helloflutter";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -419,8 +419,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.granoeste.example.helloflutter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6af52dac-9d24-4e2b-a7db-fd22786efa3d";
-				PROVISIONING_PROFILE_SPECIFIER = "helloflutter-Distribution";
+				PROVISIONING_PROFILE = "85141be5-a2b9-4f3d-871b-fd119d76f368";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc net.granoeste.example.helloflutter";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
