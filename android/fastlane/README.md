@@ -16,11 +16,26 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## Android
+### android retrieve_newer_track_version_code
+```
+fastlane android retrieve_newer_track_version_code
+```
+Retrieve newer track version code
+### android build_newer
+```
+fastlane android build_newer
+```
+Build with newer version code
 ### android deploy_play_store
 ```
 fastlane android deploy_play_store
 ```
 Push the built release APK to alpha or beta depending on current branch
+### android deploy_newer
+```
+fastlane android deploy_newer
+```
+Deploy newer version APK
 
 ----
 

@@ -9,7 +9,7 @@ echo "$GOOGLE_PLAY_UPLOAD_KEY_PROPERTIES" | base64 --decode > android/key.proper
 ls -ls android
 
 # Build run
-flutter build apk --release
+# flutter build apk --release
 
 cd android
 
@@ -17,5 +17,5 @@ cd android
 fastlane -v
 sudo fastlane update_fastlane
 
-# Deploy Play Store
-fastlane deploy_play_store
+# Build and Deploy Play Store
+fastlane deploy_newer_to_deploy_play_store

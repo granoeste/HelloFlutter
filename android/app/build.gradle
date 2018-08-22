@@ -19,6 +19,12 @@ def keystorePropertiesFile = rootProject.file("key.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
+// Manifest version
+def major = 0;
+def minor = 0;
+def patch = 0;
+def build = 2;
+
 android {
     compileSdkVersion 27
 
@@ -35,9 +41,22 @@ android {
         applicationId "net.granoeste.example.helloflutter"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 3
-        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        if (project.hasProperty("versionCode")) {
+            def newerVersionCode = Integer.parseInt(project.property("versionCode"))
+            def newerMajor = Math.round(newerVersionCode / 1000000)
+            def newerMinor = Math.round((newerVersionCode - (newerMajor * 1000000)) / 10000)
+            def newerPatch = Math.round((newerVersionCode - (newerMajor * 1000000) - (newerMinor * 10000)) / 100)
+            def newerversionName = "${newerMajor}.${newerMinor}.${newerPatch}"
+            println("newerVersionCode:" + newerVersionCode)
+            println("newerversionName:" + newerversionName)
+            versionCode newerVersionCode
+            versionName newerversionName
+        } else {
+            versionCode major * 1000000 + minor * 10000 + patch * 100 + build * 1
+            versionName "${major}.${minor}.${patch}"
+        }
     }
 
     signingConfigs {

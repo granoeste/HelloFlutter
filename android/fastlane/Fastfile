@@ -5,12 +5,49 @@ default_platform(:android)
 # to build the app using the Flutter toolchain.
 platform :android do
 
-  desc 'Push the built release APK to alpha or beta depending on current branch'
+  desc 'Retrieve newer track version code'
+  lane :retrieve_newer_track_version_code do
+    begin
+      current_internal_version_code = google_play_track_version_codes(
+        track: 'internal',
+        json_key_data: ENV['GOOGLE_PLAY_UPLOAD_API_KEY'],
+      ).max
+      current_alpha_version_code = google_play_track_version_codes(
+        track: 'alpha',
+        json_key_data: ENV['GOOGLE_PLAY_UPLOAD_API_KEY'],
+      ).max
+      current_beta_version_code = google_play_track_version_codes(
+        track: 'beta',
+        json_key_data: ENV['GOOGLE_PLAY_UPLOAD_API_KEY'],
+      ).max
+      current_rollout_version_code = google_play_track_version_codes(
+        track: 'rollout',
+        json_key_data: ENV['GOOGLE_PLAY_UPLOAD_API_KEY'],
+      ).max
+      current_production_version_code = google_play_track_version_codes(
+        track: 'production',
+        json_key_data: ENV['GOOGLE_PLAY_UPLOAD_API_KEY'],
+      ).max
+
+      [current_internal_version_code, current_alpha_version_code, current_beta_version_code, current_production_version_code].compact.max + 1
+    end
+  end
+
+  desc 'Build with newer version code'
+  lane :build_newer do
+    begin
+      newer_version_code = retrieve_newer_track_version_code
+      gradle(task: "clean assemble", build_type: "Release",  properties: { 'versionCode' => newer_version_code })
+    end
+  end
+
+  desc 'Deploy the built release APK to internal'
   lane :deploy_play_store do
     begin
       upload_to_play_store(
         track: 'internal',
         apk: '../build/app/outputs/apk/release/app-release.apk',
+        mapping: '../build/app/outputs/mapping/release/mapping.txt',
         json_key_data: ENV['GOOGLE_PLAY_UPLOAD_API_KEY'],
         skip_upload_screenshots: true,
         skip_upload_images: true
@@ -18,6 +55,14 @@ platform :android do
     rescue => exception
       raise exception unless exception.message.include?('apkUpgradeVersionConflict')
       puts 'Current version already present on the Play Store. Omitting this upload.'
+    end
+  end
+
+  desc 'Build newer version APK and deploy'
+  lane :build_newer_and_deploy_play_store do
+    begin
+      build_newer
+      deploy_play_store
     end
   end
 
