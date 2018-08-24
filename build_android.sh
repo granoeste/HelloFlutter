@@ -14,10 +14,6 @@ if [ $CI ]; then
     echo sdk.dir="$ANDROID_HOME" > android/local.properties
     echo flutter.sdk="$FLUTTER_HOME" >> android/local.properties
     echo flutter.buildMode=release >> android/local.properties
-    echo "android/local.properties ---" 
-    cat android/local.properties
-    echo "Env ---" 
-    env
 fi
 
 # Build and Deploy Play Store
