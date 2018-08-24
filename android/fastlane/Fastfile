@@ -66,4 +66,10 @@ platform :android do
     end
   end
 
+  lane :check do
+    begin
+      gradle(task: "check")
+    end
+  end
+
 end
