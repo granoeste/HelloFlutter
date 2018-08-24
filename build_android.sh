@@ -15,8 +15,9 @@ if [ $CI ]; then
     echo flutter.sdk=`which flutter` >> android/local.properties
     echo flutter.buildMode=release >> android/local.properties
 fi
+cat android/local.properties
 
 # Build and Deploy Play Store
-cd android
-bundle exec fastlane build_newer_and_deploy_play_store
+# cd android
+# bundle exec fastlane build_newer_and_deploy_play_store
 #bundle exec fastlane retrieve_newer_track_version_code
