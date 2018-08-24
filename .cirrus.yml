@@ -4,6 +4,15 @@
 container:
   image: cirrusci/flutter:latest
 
+check_task:
+  gradle_cache:
+    folder: ~/.gradle/caches
+  check_script: android/gradlew check
+  cleanup_before_cache_script:
+    - ls -la ~/.gradle/caches
+    - rm -rf ~/.gradle/caches/$GRADLE_VERSION/
+    - find ~/.gradle/caches/ -name "*.lock" -type f -delete
+
 task:
   env:
     GOOGLE_PLAY_UPLOAD_KEY: ENCRYPTED[9e9265f8710bdf201ca9292d566cc3c487a202cfb5df759e66ed0103c3566743cd5a666786b794ae3344b41a1594d082]
@@ -21,8 +30,6 @@ task:
       bundle install
   script: | 
     ./build_android.sh
-  cleanup_before_cache_script: |
-    if [ -d ~/.gradle/caches ]; then
-      rm -rf ~/.gradle/caches/$GRADLE_VERSION/
-      find ~/.gradle/caches/ -name "*.lock" -type f
-    fi
+  # cleanup_before_cache_script:
+  #   - rm -rf ~/.gradle/caches/$GRADLE_VERSION/
+  #   - find ~/.gradle/caches/ -name "*.lock" -type f -delete 
