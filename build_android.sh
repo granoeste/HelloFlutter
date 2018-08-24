@@ -14,6 +14,8 @@ if [ $CI ]; then
     echo sdk.dir="$ANDROID_HOME" > android/local.properties
     echo flutter.sdk=`which flutter` >> android/local.properties
     echo flutter.buildMode=release >> android/local.properties
+
+    env
 fi
 cat android/local.properties
 

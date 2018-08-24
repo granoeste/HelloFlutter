@@ -22,5 +22,5 @@ task:
   script: | 
     ./build_android.sh
   cleanup_before_cache_script:
-    - rm -rf ~/.gradle/caches/$GRADLE_VERSION/
-    - find ~/.gradle/caches/ -name "*.lock" -type f -delete
+    - rm -rf ~/.gradle/caches/$GRADLE_VERSION/ 2> /dev/null
+    - find ~/.gradle/caches/ -name "*.lock" -type f -delete 2> /dev/null
