@@ -20,9 +20,11 @@ task:
       cd android
       bundle install
   script: | 
-    ./build_android.sh
+    cd android
+    ./gradlew check
+    # ./build_android.sh
   cleanup_before_cache_script:
     - ls -la ~/.gradle/caches
     - rm -rf ~/.gradle/caches/$GRADLE_VERSION/
     # - find ~/.gradle/caches/ -name "*.lock" -type f -delete 
-    - find ~/.gradle/caches -name "*.lock" -type
+    - find ~/.gradle/caches -name "*.lock" -type f
