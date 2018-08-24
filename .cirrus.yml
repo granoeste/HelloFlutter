@@ -17,7 +17,7 @@ task:
     folder: /usr/local/bundle
     fingerprint_script: cat android/Gemfile.lock
     populate_script: |
-      gem update bundler
+      sudo gem update bundler
       cd android
       bundle install
   script:
