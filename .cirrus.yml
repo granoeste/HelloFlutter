@@ -4,20 +4,21 @@
 container:
   image: cirrusci/flutter:latest
 
-check_task:
-  gradle_cache:
-    folder: ~/.gradle/caches
-  check_script: gradle check
-  cleanup_before_cache_script:
-    - rm -rf ~/.gradle/caches/$GRADLE_VERSION/
-    - find ~/.gradle/caches/ -name "*.lock" -type f -delete
-
 task:
   env:
     GOOGLE_PLAY_UPLOAD_KEY: ENCRYPTED[9e9265f8710bdf201ca9292d566cc3c487a202cfb5df759e66ed0103c3566743cd5a666786b794ae3344b41a1594d082]
     GOOGLE_PLAY_UPLOAD_KEY_PROPERTIES: ENCRYPTED[e89f170452569a2c43b05d4279237c070bd0de80fd4341b3782a785f968c147d0875c521a8c1297fc0eb4f884d838950]
     GOOGLE_PLAY_UPLOAD_API_KEY: ENCRYPTED[81b7def89b09ecea8a2a2f65828ec547e79d5013a18fded8a04a0beb839e59b5f37fe4b6525697ad01fcd0b046a981c0]
+  gradle_cache:
+    folder: ~/.gradle/caches
+  cleanup_before_cache_script:
+    - rm -rf ~/.gradle/caches/$GRADLE_VERSION/
+    - find ~/.gradle/caches/ -name "*.lock" -type f -delete
   pub_cache:
     folder: ~/.pub-cache
+  bundle_cache:
+    folder: /usr/local/bundle
+    fingerprint_script: cat Gemfile.lock
+    populate_script: bundle install
   script: | 
     ./build_android.sh
