@@ -23,5 +23,6 @@ fi
 # Build and Deploy Play Store
 cd android
 # bundle exec fastlane build_newer_and_deploy_play_store
-#bundle exec fastlane retrieve_newer_track_version_code
-bundle exec fastlane build_newer
+# bundle exec fastlane retrieve_newer_track_version_code
+# bundle exec fastlane build_newer
+bundle exec fastlane check

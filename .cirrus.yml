@@ -19,10 +19,8 @@ task:
     populate_script: |
       cd android
       bundle install
-  script: | 
-    cd android
-    ./gradlew check
-    # ./build_android.sh
+  script:
+    - ./build_android.sh
   cleanup_before_cache_script:
     - ls -la ~/.gradle/caches
     - rm -rf ~/.gradle/caches/$GRADLE_VERSION/
