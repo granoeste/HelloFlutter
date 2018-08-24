@@ -17,12 +17,11 @@ task:
     folder: /usr/local/bundle
     fingerprint_script: cat android/Gemfile.lock
     populate_script: |
-      sudo gem update bundler
       cd android
       bundle install
   script:
     - ./build_android.sh
   cleanup_before_cache_script:
     - ls -la ~/.gradle/caches
-    # - rm -rf ~/.gradle/caches/$GRADLE_VERSION/
-    # - find ~/.gradle/caches/ -name "*.lock" -type f -delete 
+    - find ~/.gradle/caches/ -name "*.lock" -type f -delete 
+    - rm -rf ~/.gradle/caches/$GRADLE_VERSION/
