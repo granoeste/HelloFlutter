@@ -30,12 +30,12 @@ Build with newer version code
 ```
 fastlane android deploy_play_store
 ```
-Push the built release APK to alpha or beta depending on current branch
-### android deploy_newer
+Deploy the built release APK to internal
+### android build_newer_and_deploy_play_store
 ```
-fastlane android deploy_newer
+fastlane android build_newer_and_deploy_play_store
 ```
-Deploy newer version APK
+Build newer version APK and deploy
 
 ----
 
