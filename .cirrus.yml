@@ -18,6 +18,6 @@ task:
   script:
     # - ./build_android.sh
   cleanup_before_cache_script:
-    - ls -la ~/.gradle/caches
-    - ls -la ~/.gradle/wrapper
-    - ls -la ~/.android/build-cache
+    # - ls -la ~/.gradle/caches
+    # - ls -la ~/.gradle/wrapper
+    # - ls -la ~/.android/build-cache
