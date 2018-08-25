@@ -14,7 +14,10 @@ task:
   bundle_cache:
     folder: /usr/local/bundle
     fingerprint_script: cat android/Gemfile.lock
-    populate_script: bundle install --gemfile=android/Gemfile.lock
+    populate_script: 
+      - pwd
+      - ls -l
+      - bundle install --gemfile=android/Gemfile.lock
   script:
     - ./build_android.sh
   cleanup_before_cache_script:
