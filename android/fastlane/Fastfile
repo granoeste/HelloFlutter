@@ -72,4 +72,10 @@ platform :android do
     end
   end
 
+  lane :build do
+    begin
+      gradle(task: "clean assemble", build_type: "Release")
+    end
+  end
+
 end
