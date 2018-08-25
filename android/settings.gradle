@@ -24,6 +24,7 @@ buildCache {
   remote(HttpBuildCache) {
     url = 'http://' + System.getenv().getOrDefault("CIRRUS_HTTP_CACHE_HOST", "localhost:12321") + "/"
     enabled = isCiServer
-    push = isMasterBranch
+    // push = isMasterBranch
+    push = isCiServer
   }
 }
