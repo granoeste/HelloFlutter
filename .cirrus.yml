@@ -14,7 +14,7 @@ task:
   bundle_cache:
     folder: /usr/local/bundle
     fingerprint_script: cat android/Gemfile.lock
-    populate_script: cd android; bundle install --deployment
+    populate_script: cd android; bundle install --deployment --path /usr/local/bundle
   script:
     - ./build_android.sh
   cleanup_before_cache_script:
