@@ -12,9 +12,9 @@ task:
   pub_cache:
     folder: ~/.pub-cache
   bundle_cache:
-    folder: ~/vendor/bundle
+    folder: /usr/local/bundle
     fingerprint_script: cat android/Gemfile.lock
-    populate_script: cd android; bundle install --deployment --path ~/vendor/bundle
+    populate_script: cd android; bundle install --deployment
   script:
     - ./build_android.sh
   cleanup_before_cache_script:
