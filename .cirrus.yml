@@ -16,27 +16,15 @@ task:
     # folder: vendor/bundle
     folder: ./vendor/bundle
     fingerprint_script: cat android/Gemfile.lock
-    populate_script: cd android; bundle install
+    populate_script: 
+      - cd android
+      - bundle install
+      - bundle -v
+      - bundle list
     # populate_script: cd android; bundle install --deployment
     # populate_script: cd android; bundle install --path /usr/local/bundle
-
-  script: |
-    flutter doctor -v
-    if [ $CI ]; then
-        echo "┌─────────────────────┐"
-        echo "│     Build on CI     │"
-        echo "└─────────────────────┘"
-        echo "Build preconfiguration..."
-        echo "$GOOGLE_PLAY_UPLOAD_KEY" | base64 --decode > android/fake_upload.jks
-        echo "$GOOGLE_PLAY_UPLOAD_KEY_PROPERTIES" | base64 --decode > android/key.properties
-        echo sdk.dir="$ANDROID_HOME" > android/local.properties
-        echo flutter.sdk="$FLUTTER_HOME" >> android/local.properties
-        echo flutter.buildMode=release >> android/local.properties
-    fi
-    cd android
-    bundle -v
-    bundle list
-    bundle exec fastlane build
+  script:
+    - ./build_android.sh
   cleanup_before_cache_script:
     # - ls -la ~/vendor/bundle
     # - ls -la ~/.gradle/caches
