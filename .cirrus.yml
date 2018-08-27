@@ -5,6 +5,7 @@ container:
   image: cirrusci/flutter:latest
 
 task:
+  name: deploy-android
   env:
     GOOGLE_PLAY_UPLOAD_KEY: ENCRYPTED[9e9265f8710bdf201ca9292d566cc3c487a202cfb5df759e66ed0103c3566743cd5a666786b794ae3344b41a1594d082]
     GOOGLE_PLAY_UPLOAD_KEY_PROPERTIES: ENCRYPTED[e89f170452569a2c43b05d4279237c070bd0de80fd4341b3782a785f968c147d0875c521a8c1297fc0eb4f884d838950]
@@ -24,7 +25,7 @@ task:
     # - ls -la ~/.android/build-cache
 
 task:
-  name: deploy-macos
+  name: deploy-ios
   osx_instance:
     image: high-sierra-xcode-9.4.1
   env:
@@ -36,4 +37,5 @@ task:
     fingerprint_script: cat ios/Gemfile.lock
     populate_script: cd ios; bundle install --deployment
   script:
+    - ls -la
     - ./build_ios.sh
