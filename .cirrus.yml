@@ -17,7 +17,7 @@ task:
     fingerprint_script: cat android/Gemfile.lock
     # populate_script: cd android; bundle install
     # populate_script: cd android; bundle install --deployment
-    populate_script: cd android; bundle  --path /usr/local/bundle
+    populate_script: cd android; sudo bundle install --path /usr/local/bundle
 
   script:
     - ./build_android.sh
