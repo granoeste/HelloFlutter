@@ -12,13 +12,9 @@ task:
   pub_cache:
     folder: ~/.pub-cache
   bundle_cache:
-    # folder: /usr/local/bundle
-    # folder: ./vendor/bundle
     folder: android/vendor/bundle
     fingerprint_script: cat android/Gemfile.lock
-    # populate_script: cd android; bundle install
     populate_script: cd android; bundle install --deployment
-    # populate_script: cd android; bundle install --path /usr/local/bundle
   script:
     - ./build_android.sh
   cleanup_before_cache_script:
@@ -26,3 +22,18 @@ task:
     # - ls -la ~/.gradle/caches
     # - ls -la ~/.gradle/wrapper
     # - ls -la ~/.android/build-cache
+
+task:
+  name: deploy-macos
+  osx_instance:
+    image: high-sierra-xcode-9.4.1
+  env:
+    PUBLISHING_MATCH_CERTIFICATE_REPO: ENCRYPTED[32e19c69eb5c4ec99d7078acf828ea096da242e303096a6a19730d7fcec71586ab98d22a12bcc3ac2b1816d54b7146f9]
+  pub_cache:
+    folder: ~/.pub-cache
+  bundle_cache:
+    folder: ios/vendor/bundle
+    fingerprint_script: cat ios/Gemfile.lock
+    populate_script: cd ios; bundle install --deployment
+  script:
+    - ./build_ios.sh
