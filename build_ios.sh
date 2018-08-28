@@ -8,6 +8,7 @@ if [ $CI ]; then
     echo "└─────────────────────┘"
     echo "Build preconfiguration ..."
     echo "Define ssh config ..."
+    ls -l ~/.ssh
     [ ! -e ~/.ssh ] && mkdir -p ~/.ssh
     echo "$SSH_CONFIG" | base64 --decode > ~/.ssh/config
     echo "$GIT_PRIVATE_KEY" | base64 --decode > ~/.ssh/github
@@ -20,6 +21,7 @@ if [ $CI ]; then
     brew install ios-deploy
 
     flutter doctor -v
+    env
 fi
 
 # Build and Deploy Play Store
