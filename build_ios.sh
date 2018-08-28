@@ -26,6 +26,6 @@ fi
 
 # Build and Deploy Play Store
 cd ios
-bundle exec fastlane sync_code_signing
+bundle exec fastlane retrieving_signing
 security find-identity -v -p codesigning
 bundle exec fastlane build

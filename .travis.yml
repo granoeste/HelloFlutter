@@ -18,8 +18,13 @@ install:
 
 jobs:  
   include:
-    - stage: "sync_code_signing"
-      name: "sync_code_signing"
+    - stage: "retrieving_signing"
+      name: "Retrieving signing certificates and profiles"
       script:
-        - cd io
-        - bundle exec fastlane sync_code_signing
+        - [ ! -e ~/.ssh ] && mkdir -p ~/.ssh
+        - echo "$SSH_CONFIG" | base64 --decode > ~/.ssh/config
+        - echo "$GIT_PRIVATE_KEY" | base64 --decode > ~/.ssh/github
+        - cd ios
+        - bundle exec fastlane retrieving_signing
+        - security find-identity -v -p codesigning
+
