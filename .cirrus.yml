@@ -28,19 +28,18 @@ task:
   name: deploy-ios
   osx_instance:
     image: high-sierra-xcode-9.4.1
-  # env:
-  #   MATCH_GIT_URL: ENCRYPTED[32e19c69eb5c4ec99d7078acf828ea096da242e303096a6a19730d7fcec71586ab98d22a12bcc3ac2b1816d54b7146f9]
-  #   MATCH_GIT_USER_EMAIL: ENCRYPTED[775d261e72a68ddc65a8c6ec026d02fd2d31f58a8a57d129ee36c3025cc95f6948e7de9d0754285728cb29b6d5c1eb6e]
-  #   MATCH_KEYCHAIN_PASSWORD: ENCRYPTED[d41bfccd15738b1882fc5ec96f1e5fd6b61ee244751a69bfe9ab7044d48c37f3109e3e8dcdedd28291623cef48cc3025]
-  #   MATCH_PASSWORD: ENCRYPTED[b62099f54c7eb3575e880ac20a2ef6e9ee34df4b492f4294f0e27924a041381bd5c02be43381d998471ba765f1f17130]
-  #   GIT_PRIVATE_KEY: ENCRYPTED[762284089b6a77da39d156d28b8890fd68e36a8893c5e912c44172e5181e8e54c53ea4cfb0b5e9493f33a1d4127d1c37]
-  #   SSH_CONFIG: ENCRYPTED[d1f925e6bff0b04985f0cb5db626ed3dcdf14fc8d0dbc7160abeb0b9c820df2b8a7e312dd036e0a0d44a83587a878b4e]
-  # pub_cache:
-  #   folder: ~/.pub-cache
-  # bundle_cache:
-  #   folder: ios/vendor/bundle
-  #   fingerprint_script: cat ios/Gemfile.lock
-  #   populate_script: cd ios; bundle install --deployment
+  env:
+    MATCH_GIT_URL: ENCRYPTED[32e19c69eb5c4ec99d7078acf828ea096da242e303096a6a19730d7fcec71586ab98d22a12bcc3ac2b1816d54b7146f9]
+    MATCH_GIT_USER_EMAIL: ENCRYPTED[775d261e72a68ddc65a8c6ec026d02fd2d31f58a8a57d129ee36c3025cc95f6948e7de9d0754285728cb29b6d5c1eb6e]
+    MATCH_KEYCHAIN_PASSWORD: ENCRYPTED[d41bfccd15738b1882fc5ec96f1e5fd6b61ee244751a69bfe9ab7044d48c37f3109e3e8dcdedd28291623cef48cc3025]
+    MATCH_PASSWORD: ENCRYPTED[b62099f54c7eb3575e880ac20a2ef6e9ee34df4b492f4294f0e27924a041381bd5c02be43381d998471ba765f1f17130]
+    GIT_PRIVATE_KEY: ENCRYPTED[762284089b6a77da39d156d28b8890fd68e36a8893c5e912c44172e5181e8e54c53ea4cfb0b5e9493f33a1d4127d1c37]
+    SSH_CONFIG: ENCRYPTED[d1f925e6bff0b04985f0cb5db626ed3dcdf14fc8d0dbc7160abeb0b9c820df2b8a7e312dd036e0a0d44a83587a878b4e]
+  pub_cache:
+    folder: ~/.pub-cache
+  bundle_cache:
+    folder: ios/vendor/bundle
+    fingerprint_script: cat ios/Gemfile.lock
+    populate_script: cd ios; bundle install --deployment
   script:
-    - ls -la
-    # - ./build_ios.sh
+    - ./build_ios.sh
