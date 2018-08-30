@@ -29,8 +29,6 @@ flutter build ios --release
 
 # Build and Deploy Play Store
 cd ios
-echo "Retrieving signing ..."
-bundle exec fastlane retrieving_signing
-security find-identity -v -p codesigning
-echo "Build ..."
-bundle exec fastlane build
+# bundle exec fastlane retrieving_sign
+# bundle exec fastlane build
+bundle exec fastlane build_and_testflight

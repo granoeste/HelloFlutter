@@ -16,6 +16,11 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
+### ios retrieving_sign
+```
+fastlane ios retrieving_sign
+```
+Sync code sign
 ### ios build
 ```
 fastlane ios build
