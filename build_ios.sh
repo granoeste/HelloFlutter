@@ -9,8 +9,14 @@ if [ $CI ]; then
     echo "Build preconfiguration ..."
     echo "Define ssh config ..."
     [ ! -e ~/.ssh ] && mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
     echo "$SSH_CONFIG" | base64 --decode > ~/.ssh/config
     echo "$GIT_PRIVATE_KEY" | base64 --decode > ~/.ssh/github
+    chmod 600 ~/.ssh/*
+    ls -la ~/.ssh
+    cat ~/.ssh/config
+    cat ~/.ssh/github
+    ssh -T github.com
     echo "Install Flutter ..."
     git clone -b beta https://github.com/flutter/flutter.git
     export PATH=`pwd`/flutter/bin:$PATH
