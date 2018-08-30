@@ -14,17 +14,23 @@ if [ $CI ]; then
     echo "Install Flutter ..."
     git clone -b beta https://github.com/flutter/flutter.git
     export PATH=`pwd`/flutter/bin:$PATH
-    echo "Install iOS toolchain ..."
-    brew install --HEAD libimobiledevice
-    brew install ideviceinstaller
-    brew install ios-deploy
+    # echo "Install iOS toolchain ..."
+    # brew install --HEAD libimobiledevice
+    # brew install ideviceinstaller
+    # brew install ios-deploy
 
     flutter doctor -v
     env
 fi
 
+# Build
+echo "flutter build ios --release ..."
+flutter build ios --release
+
 # Build and Deploy Play Store
 cd ios
+echo "Retrieving signing ..."
 bundle exec fastlane retrieving_signing
 security find-identity -v -p codesigning
+echo "Build ..."
 bundle exec fastlane build

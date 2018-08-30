@@ -20,7 +20,7 @@ platform :ios do
   lane :retrieving_signing do
     puts 'Retrieving signing certificates and profiles...'
     sync_code_signing(
-      app_identifier(["net.granoeste.example.helloflutter"]),
+      # app_identifier(["net.granoeste.example.helloflutter"]),
       type: "appstore", 
       readonly: true
     )
