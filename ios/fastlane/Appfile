@@ -1,0 +1,8 @@
+app_identifier("net.granoeste.example.helloflutter") # The bundle identifier of your app
+apple_id("granoeste@gmail.com") # Your Apple email address
+
+itc_team_id("118213336") # iTunes Connect Team ID
+team_id("C36DAMGSR6") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

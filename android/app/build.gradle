@@ -15,6 +15,16 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+def keystorePropertiesFile = rootProject.file("key.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+// Manifest version
+def major = 0;
+def minor = 0;
+def patch = 0;
+def build = 2;
+
 android {
     compileSdkVersion 27
 
@@ -31,16 +41,40 @@ android {
         applicationId "net.granoeste.example.helloflutter"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        if (project.hasProperty("versionCode")) {
+            def newerVersionCode = Integer.parseInt(project.property("versionCode"))
+            def newerMajor = Math.round(newerVersionCode / 1000000)
+            def newerMinor = Math.round((newerVersionCode - (newerMajor * 1000000)) / 10000)
+            def newerPatch = Math.round((newerVersionCode - (newerMajor * 1000000) - (newerMinor * 10000)) / 100)
+            def newerversionName = "${newerMajor}.${newerMinor}.${newerPatch}"
+            println("newerVersionCode:" + newerVersionCode)
+            println("newerversionName:" + newerversionName)
+            versionCode newerVersionCode
+            versionName newerversionName
+        } else {
+            versionCode major * 1000000 + minor * 10000 + patch * 100 + build * 1
+            versionName "${major}.${minor}.${patch}"
+        }
     }
 
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
+
+            minifyEnabled true
+            useProguard true
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }

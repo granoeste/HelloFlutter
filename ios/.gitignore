@@ -43,3 +43,9 @@ Icon?
 
 Pods/
 .symlinks/
+
+Runner.app.dSYM.zip
+Runner.ipa
+*/report.xml
+*.env*
+vendor
