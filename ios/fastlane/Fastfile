@@ -37,6 +37,16 @@ platform :ios do
     sh("security find-identity -v -p codesigning")
   end
 
+  lane :retrieving_sign_adhoc do
+    puts 'Retrieving signing certificates and profiles...'
+    sync_code_signing(
+      app_identifier: "net.granoeste.example.helloflutter",
+      type: "adhoc", 
+      readonly: true
+    )
+    sh("security find-identity -v -p codesigning")
+  end
+
   desc "Run Build"
   lane :build do
     puts 'Certificates and profiles installed'
@@ -53,6 +63,22 @@ platform :ios do
     build
     puts 'Upload to Testflight...'
     upload_to_testflight
+  end
+
+  # Fastfile actions accept additional configuration, but
+  # don't worry, fastlane will prompt you for required
+  # info which you can add here later
+  lane :beta do
+    retrieving_sign_adhoc
+    # build your iOS app
+    puts 'Build App...'
+    build_app(workspace: "Runner.xcworkspace", scheme: "Runner", export_method: "ad-hoc")
+
+    # upload to Beta by Crashlytics
+    crashlytics(
+      api_token: "341962dabaa2652db56ede3bab74f9148b5093be",
+      build_secret: "1a8c60811a7402f0f790d151d261fd37d5c850c466961af430256d97e2167ab9"
+    )
   end
 
 end
