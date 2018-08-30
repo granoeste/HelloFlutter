@@ -14,9 +14,14 @@ if [ $CI ]; then
     echo "$GIT_PRIVATE_KEY" | base64 --decode > ~/.ssh/github
     chmod 600 ~/.ssh/*
     ls -la ~/.ssh
-    cat ~/.ssh/config
-    cat ~/.ssh/github
-    ssh -T github.com
+
+    echo "Retrieving signs ..."
+    cd ios
+    bundle exec fastlane retrieving_sign_development
+    bundle exec fastlane retrieving_sign_appstore
+    security find-identity -v -p codesigning
+    cd ..
+
     echo "Install Flutter ..."
     git clone -b beta https://github.com/flutter/flutter.git
     export PATH=`pwd`/flutter/bin:$PATH
@@ -27,11 +32,6 @@ if [ $CI ]; then
 
     flutter doctor -v
 
-    cd ios
-    bundle exec fastlane retrieving_sign_development
-    bundle exec fastlane retrieving_sign_appstore
-    security find-identity -v -p codesigning
-    cd ..
 fi
 
 # Build
@@ -41,5 +41,5 @@ flutter build ios --release
 # Build and Deploy Play Store
 cd ios
 # bundle exec fastlane retrieving_sign_appstore
-# bundle exec fastlane build
-bundle exec fastlane build_and_testflight
+bundle exec fastlane build
+# bundle exec fastlane build_and_testflight
