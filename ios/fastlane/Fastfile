@@ -24,11 +24,6 @@ platform :ios do
       type: "appstore", 
       readonly: true
     )
-    sync_code_signing(
-      app_identifier: "net.granoeste.example.helloflutter",
-      type: "development", 
-      readonly: true
-    )
     sh("security find-identity -v -p codesigning")
   end
 
