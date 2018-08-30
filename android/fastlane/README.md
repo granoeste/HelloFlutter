@@ -36,6 +36,11 @@ Deploy the built release APK to internal
 fastlane android build_newer_and_deploy_play_store
 ```
 Build newer version APK and deploy
+### android check
+```
+fastlane android check
+```
+
 
 ----
 

@@ -47,4 +47,5 @@ Pods/
 Runner.app.dSYM.zip
 Runner.ipa
 */report.xml
+*.env*
 vendor

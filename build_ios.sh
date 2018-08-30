@@ -20,7 +20,6 @@ if [ $CI ]; then
     # brew install ios-deploy
 
     flutter doctor -v
-    env
 fi
 
 # Build

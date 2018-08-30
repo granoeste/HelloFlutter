@@ -48,7 +48,6 @@ platform :android do
         track: 'internal',
         apk: '../build/app/outputs/apk/release/app-release.apk',
         mapping: '../build/app/outputs/mapping/release/mapping.txt',
-        json_key_data: ENV['GOOGLE_PLAY_UPLOAD_API_KEY'],
         skip_upload_screenshots: true,
         skip_upload_images: true
       )

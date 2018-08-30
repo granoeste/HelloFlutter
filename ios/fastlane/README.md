@@ -26,6 +26,11 @@ Sync code sign
 fastlane ios build
 ```
 Run Build
+### ios build_and_testflight
+```
+fastlane ios build_and_testflight
+```
+Run Build and Testflight
 
 ----
 
