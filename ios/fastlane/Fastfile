@@ -17,7 +17,17 @@ default_platform(:ios)
 
 platform :ios do
   desc "Sync code sign"
-  lane :retrieving_sign do
+  lane :retrieving_sign_development do
+    puts 'Retrieving signing certificates and profiles...'
+    sync_code_signing(
+      app_identifier: "net.granoeste.example.helloflutter",
+      type: "development", 
+      readonly: true
+    )
+    sh("security find-identity -v -p codesigning")
+  end
+
+  lane :retrieving_sign_appstore do
     puts 'Retrieving signing certificates and profiles...'
     sync_code_signing(
       app_identifier: "net.granoeste.example.helloflutter",
@@ -31,7 +41,7 @@ platform :ios do
   lane :build do
     puts 'Certificates and profiles installed'
     disable_automatic_code_signing
-    retrieving_sign
+    retrieving_sign_appstore
     puts 'Increment build number...'
     increment_build_number(xcodeproj: "Runner.xcodeproj")
     puts 'Build App...'

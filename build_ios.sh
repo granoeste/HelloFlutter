@@ -20,6 +20,12 @@ if [ $CI ]; then
     # brew install ios-deploy
 
     flutter doctor -v
+
+    cd ios
+    bundle exec fastlane retrieving_sign_development
+    bundle exec fastlane retrieving_sign_appstore
+    security find-identity -v -p codesigning
+    cd ..
 fi
 
 # Build
@@ -28,6 +34,6 @@ flutter build ios --release
 
 # Build and Deploy Play Store
 cd ios
-# bundle exec fastlane retrieving_sign
+# bundle exec fastlane retrieving_sign_appstore
 # bundle exec fastlane build
 bundle exec fastlane build_and_testflight
